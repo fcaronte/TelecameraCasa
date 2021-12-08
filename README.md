@@ -1,0 +1,1 @@
+Simple app to enable/disable background mode of the TinyCam WebServer
