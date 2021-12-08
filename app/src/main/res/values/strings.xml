@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">TelecameraCasa</string>
+    <string name="attiva">ATTIVA</string>
+    <string name="stato">STATO</string>
+    <string name="disattiva">DISATTIVA</string>
+    <string name="notifiche_disattivate">NOTIFICHE DISATTIVATE</string>
+    <string name="notifiche_attivate">NOTIFICHE ATTIVATE</string>
+    <string name="apri_sito">APRI SITO COMPLETO</string>
+    <string name="apri_notifiche">APRI NOTIFICHE</string>
+</resources>
