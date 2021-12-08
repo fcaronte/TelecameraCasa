@@ -7,4 +7,5 @@
     <string name="notifiche_attivate">NOTIFICHE ATTIVATE</string>
     <string name="apri_sito">APRI SITO COMPLETO</string>
     <string name="apri_notifiche">APRI NOTIFICHE</string>
+    <string name="connessione_in_corso">CONNESSIONE IN CORSO…</string>
 </resources>

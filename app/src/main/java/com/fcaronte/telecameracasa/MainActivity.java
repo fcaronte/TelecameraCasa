@@ -97,40 +97,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void callSite(String url) {
-        OkHttpClient client = new OkHttpClient();
-
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
-        Log.d(TAG + " Site Request url: ", url);
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-                Log.d(TAG + " Site Request failed: ", e.toString());
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) {
-                try {
-                    if (response.isSuccessful()) {
-                        final String myResponse = response.body().string();
-                        Log.d(TAG + " Site Response: ", myResponse);
-                        if (myResponse.contains("token")) {
-                            token = myResponse.substring(18, 58);
-                            Log.d(TAG, " Token is: " + token);
-                            trylogin(token);
-                        } else {
-                            reply = myResponse;
-                            setStatus(reply);
-                        }
-                    }
-                } catch (IOException e) {
+        try {
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            Log.d(TAG + " Site Request url: ", url);
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
                     e.printStackTrace();
-                    Log.d(TAG, e.toString());
+                    Log.d(TAG + " Site Request failed: ", e.toString());
                 }
-            }
-        });
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                        if (response.isSuccessful()) {
+                            final String myResponse = response.body().string();
+                            Log.d(TAG + " Site Response: ", myResponse);
+                            if (myResponse.contains("token")) {
+                                token = myResponse.substring(18, 58);
+                                Log.d(TAG, " Token is: " + token);
+                                trylogin(token);
+                            } else {
+                                setStatus(myResponse);
+                                Log.d(TAG, " Site say: " + myResponse);
+                            }
+                        }
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d(TAG, e.toString());
+        }
     }
 
     public void trylogin (String token) {
@@ -147,8 +146,11 @@ public class MainActivity extends AppCompatActivity {
                     mStato.setText(R.string.notifiche_disattivate);
                 } else if (reply.contains("\"backgroundMode\":true")) {
                     mStato.setText(R.string.notifiche_attivate);
-                } else
-                mStato.setText(reply);
+                } else if (reply.equals("connecting") || reply.equals("")){
+                    mStato.setText(R.string.connessione_in_corso);
+                } else {
+                    mStato.setText(reply);
+                }
             }
             Log.d(TAG + " Status: ", reply);
         });
