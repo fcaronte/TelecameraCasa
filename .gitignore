@@ -13,6 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
-/app/src/main/java/com/fcaronte/telecameracasa/ServerData.java
 /app/release/output-metadata.json
-/app/build.gradle
