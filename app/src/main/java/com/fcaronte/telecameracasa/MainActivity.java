@@ -2,7 +2,7 @@ package com.fcaronte.telecameracasa;
 
 import static com.fcaronte.telecameracasa.ServerData.address;
 import static com.fcaronte.telecameracasa.ServerData.password;
-import static com.fcaronte.telecameracasa.ServerData.telegramBot;
+import static com.fcaronte.telecameracasa.ServerData.telegramID;
 import static com.fcaronte.telecameracasa.ServerData.user;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         notifiche.setOnClickListener(view -> {
             try {
                 notifiche.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("tg://resolve?domain=" + telegramBot));
+                Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.telegram.me/" + telegramID));
                 startActivity(myIntent);
             } catch (ActivityNotFoundException e) {
                 Toast.makeText(this, "No application can handle this request."
